@@ -1,0 +1,1 @@
+mongoimport --authenticationDatabase admin -u root -p example --db mydb --collection todo_items --drop --file /docker-entrypoint-initdb.d/todo_items.json --jsonArray
