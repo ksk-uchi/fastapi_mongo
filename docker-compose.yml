@@ -13,6 +13,8 @@ services:
             - ./FastAPI/src:/var/www/app
     mongo:
         image: mongo
+        ports:
+            - 27017:27017
         restart: always
         volumes:
             - ./MongoDB/init:/docker-entrypoint-initdb.d
