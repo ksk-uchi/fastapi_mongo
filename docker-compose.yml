@@ -11,6 +11,8 @@ services:
             context: ./FastAPI
         volumes:
             - ./FastAPI/src:/var/www/app
+        tty: true
+        stdin_open: true
     mongo:
         image: mongo
         ports:
