@@ -20,7 +20,7 @@ def connect_mongo() -> MongoClient:
     )
 
 
-def close_mongo(cli: MongoClient) -> None:
+def close_mongo() -> None:
     db.client.close()
     logger.info("CLOSING CONNECTION!!!")
 

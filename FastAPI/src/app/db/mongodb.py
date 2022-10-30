@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 
 class MyDB:
-    client: MongoClient = None
+    client: MongoClient
 
 
 db = MyDB
