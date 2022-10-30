@@ -12,7 +12,4 @@ WORKDIR /var/www/app
 
 EXPOSE 8080
 
-ENV MONGO_USER="root"
-ENV MONGO_PASSWORD="example"
-
 CMD uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
