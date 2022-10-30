@@ -8,6 +8,8 @@ from fastapi import FastAPI
 from .db.mongodb_utils import close_mongo, connect_mongo
 from .db.mongodb import get_cli
 
+from .models.todo_item import TodoItem
+
 
 app = FastAPI()
 app.add_event_handler("startup", connect_mongo)
@@ -25,12 +27,12 @@ def read_root() -> dict:
 def list_items() -> list:
     cli = get_cli()
     todo_items = cli.mydb.todo_items
-    items = [{**item, "_id": str(item["_id"])} for item in todo_items.find()]
+    items = [TodoItem(**item) for item in todo_items.find()]
     return items
 
 
 @app.get("/items/{item_id}")
 def read_item(item_id: str) -> dict:
     cli = get_cli()
-    item = cli.mydb.todo_items.find({"_id": ObjectId(item_id)})
-    return [{**i, "_id": str(i["_id"])} for i in item]
+    item = cli.mydb.todo_items.find_one({"_id": ObjectId(item_id)})
+    return TodoItem(**item)
